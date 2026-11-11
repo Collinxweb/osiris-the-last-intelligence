@@ -1,27 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
-:root{font-family:Inter,system-ui,sans-serif;color:#f4ead8;background:#080b10;font-synthesis:none;text-rendering:optimizeLegibility}
-*{box-sizing:border-box}html,body,#root{margin:0;width:100%;height:100%;overflow:hidden}body{overscroll-behavior:none;touch-action:none}
-.game-shell{position:relative;width:100%;height:100%;min-height:100dvh;background:#090b10;overflow:hidden}
-.game-shell canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none}
-.hud{position:absolute;inset:0;pointer-events:none;padding:calc(env(safe-area-inset-top) + 15px) 18px 18px}
-.brand{position:absolute;top:calc(env(safe-area-inset-top) + 14px);left:18px;display:flex;align-items:center;gap:10px;color:#e6bd70}
-.ankh{font-size:34px;line-height:1;text-shadow:0 0 18px #d99537}
-.brand strong{display:block;font:700 18px Cinzel,serif;letter-spacing:5px}.brand small{display:block;font:500 8px Inter,sans-serif;letter-spacing:2.5px;color:#c8a56c;margin-top:2px}
-.mission{position:absolute;top:calc(env(safe-area-inset-top) + 15px);left:50%;transform:translateX(-50%);text-align:center;background:#0a0d12a8;border:1px solid #a67a3d66;border-radius:5px;padding:8px 18px;min-width:190px;backdrop-filter:blur(8px)}
-.mission small,.mission span{display:block;color:#b99a6d;font-size:8px;letter-spacing:1.6px}.mission strong{display:block;font:600 12px Cinzel,serif;color:#f2d39a;margin:4px 0}.mission span{font-size:9px;letter-spacing:.4px;color:#d7c7ad}
-.status{position:absolute;top:calc(env(safe-area-inset-top) + 20px);right:18px;font-size:9px;letter-spacing:1.3px;color:#b4d9bd}.status-dot{display:inline-block;width:6px;height:6px;background:#66c98c;border-radius:50%;margin-right:6px;box-shadow:0 0 8px #66c98c}
-.message{position:absolute;left:18px;bottom:calc(env(safe-area-inset-bottom) + 112px);padding:10px 13px;background:#090c12bd;border-left:2px solid #39b9e7;color:#e4d6bd;font-size:11px;max-width:250px;backdrop-filter:blur(6px)}
-.objective{position:absolute;left:18px;top:90px;font-size:10px;color:#e8d8bd;letter-spacing:.3px}.check{color:#d7a34c;font-size:16px;margin-right:6px}.check.done{color:#69d59b}
-.crosshair{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);font-size:20px;color:#fff8; text-shadow:0 0 6px #000}
-.touch-layer{position:absolute;inset:0;pointer-events:none}
-.joystick-zone{pointer-events:auto;position:absolute;left:18px;bottom:calc(env(safe-area-inset-bottom) + 18px);width:116px;height:116px;display:flex;align-items:center;justify-content:center;touch-action:none}
-.joystick-ring{width:92px;height:92px;border:1px solid #d9b16b77;border-radius:50%;background:#11151c66;display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 22px #d39b3920}
-.joystick-knob{width:38px;height:38px;border-radius:50%;background:linear-gradient(145deg,#e5c17b,#76512b);border:1px solid #f7dba2;box-shadow:0 0 15px #dca34c66}
-.joystick-zone span{position:absolute;bottom:-1px;font-size:8px;letter-spacing:2px;color:#cdb98e}
-.action-button{pointer-events:auto;position:absolute;right:22px;bottom:calc(env(safe-area-inset-bottom) + 36px);width:78px;height:78px;border-radius:50%;border:1px solid #56c8ec;background:#102a38c9;color:#d9f5ff;font-size:9px;letter-spacing:1px;font-weight:700;box-shadow:0 0 22px #159ac455;touch-action:manipulation}
-.action-button:active{transform:scale(.95);background:#1d5064}
-.hint{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);font-size:9px;color:#b8a98f99;white-space:nowrap;pointer-events:none}
-.chapter{position:absolute;right:18px;bottom:calc(env(safe-area-inset-bottom) + 130px);text-align:right;pointer-events:none}
-.chapter span{display:block;font-size:8px;letter-spacing:2px;color:#c49a59}.chapter strong{display:block;font:600 11px Cinzel,serif;letter-spacing:1px;color:#f0dfbf;margin-top:4px}
-@media(max-width:600px){.brand{top:calc(env(safe-area-inset-top) + 10px);left:12px}.brand strong{font-size:14px;letter-spacing:3px}.brand small{font-size:6px;letter-spacing:1.5px}.mission{top:calc(env(safe-area-inset-top) + 62px);left:12px;transform:none;min-width:0;padding:6px 10px;text-align:left}.mission small{font-size:7px}.mission strong{font-size:10px}.mission span{font-size:8px}.status{top:calc(env(safe-area-inset-top) + 18px);right:12px;font-size:7px}.objective{top:112px;left:12px;font-size:9px}.message{left:12px;bottom:calc(env(safe-area-inset-bottom) + 128px);font-size:10px;max-width:205px}.joystick-zone{left:8px;bottom:calc(env(safe-area-inset-bottom) + 18px)}.action-button{right:14px;bottom:calc(env(safe-area-inset-bottom) + 38px);width:70px;height:70px}.chapter{right:12px;bottom:calc(env(safe-area-inset-bottom) + 140px)}.chapter strong{font-size:9px}.hint{display:none}}
-@media(orientation:portrait){.game-shell:after{content:'ROTATE YOUR DEVICE TO PLAY';position:absolute;inset:0;z-index:10;background:#080b10eF;display:flex;align-items:center;justify-content:center;text-align:center;color:#e6bd70;font:600 14px Cinzel,serif;letter-spacing:2px;padding:30px}}
+
+/* Chapter 01 gameplay layer */
+.hud{z-index:4}
+.mission{max-width:min(340px,42vw);min-width:220px;padding:10px 16px}
+.message{max-width:300px;line-height:1.5;border-left-color:#49d9ff}
+.objective{padding:9px 12px;background:#080b10a8;border:1px solid #c69a5540;border-radius:4px;max-width:340px;line-height:1.4}
+.intro-panel,.story-panel,.riddle-panel,.complete-panel{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(520px,calc(100vw - 36px));padding:26px 30px;background:linear-gradient(145deg,#10151deF,#090c12f2);border:1px solid #b88c4e88;border-radius:8px;box-shadow:0 18px 70px #0009,0 0 45px #d79b3020;backdrop-filter:blur(12px);pointer-events:auto;text-align:center;color:#f2e4ca}
+.intro-panel .eyebrow,.story-panel small,.riddle-panel small,.complete-panel small{font-size:9px;letter-spacing:3px;color:#c69b5d}
+.intro-panel h1,.complete-panel h2{font:600 clamp(25px,5vw,42px)/1.16 Cinzel,serif;letter-spacing:2px;color:#f2d49b;margin:13px 0}
+.intro-panel p,.story-panel p,.riddle-panel p,.complete-panel p{font:400 13px/1.8 Inter,sans-serif;color:#d5c6ad;max-width:420px;margin:0 auto 20px}
+.intro-instruction{font-size:8px;letter-spacing:1.4px;color:#9d927f;margin:18px 0}
+.intro-instruction span{color:#d7a65b;padding:0 5px}
+.primary-action,.story-panel button,.complete-panel button{border:1px solid #d6a75d;background:linear-gradient(135deg,#c18b3e,#805629);color:#fff4dd;padding:13px 22px;border-radius:3px;font:700 10px Inter,sans-serif;letter-spacing:1.5px;pointer-events:auto}
+.primary-action span,.story-panel button span{padding-left:15px;font-size:15px}
+.story-panel{top:auto;bottom:calc(env(safe-area-inset-bottom) + 110px);transform:translateX(-50%);width:min(560px,calc(100vw - 36px));padding:17px 22px}
+.story-panel p{margin:10px auto 0;font:italic 13px/1.8 Cinzel,serif;color:#f1dfbd}
+.story-panel button{margin-top:12px;padding:9px 18px}
+.riddle-panel{top:auto;bottom:calc(env(safe-area-inset-bottom) + 105px);transform:translateX(-50%);width:min(500px,calc(100vw - 30px));padding:16px 18px}
+.riddle-panel p{margin:9px auto 13px}
+.rune-row{display:flex;justify-content:center;gap:10px}
+.rune-row button{width:92px;min-height:78px;border:1px solid #b88c4e88;background:#171b20;color:#e8d4ae;border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;pointer-events:auto}
+.rune-row button:active{background:#4a3825;border-color:#e8bd71}
+.rune-row b{font:28px Cinzel,serif;color:#e6bb70}.rune-row span{font:8px Inter,sans-serif;letter-spacing:1px}
+.rune-progress{display:flex;justify-content:center;gap:8px;margin-top:12px;min-height:16px}.rune-progress span{font-size:8px;letter-spacing:1px;color:#7dd5ef}
+.complete-panel{width:min(460px,calc(100vw - 36px))}
+.complete-mark{font-size:40px;color:#66d6ef;text-shadow:0 0 25px #24bce9}
+.complete-panel h2{font-size:clamp(23px,4vw,34px)}
+.crosshair{z-index:1}
+@media(max-width:600px){
+ .mission{top:calc(env(safe-area-inset-top) + 58px);left:12px;max-width:52vw;min-width:0;padding:7px 9px}
+ .mission small{font-size:6px;letter-spacing:1px}.mission strong{font-size:9px}.mission span{font-size:7px}
+ .objective{top:116px;left:12px;max-width:52vw;font-size:8px;padding:7px 8px}
+ .message{left:12px;bottom:calc(env(safe-area-inset-bottom) + 130px);max-width:52vw;font-size:9px;padding:8px 9px}
+ .intro-panel{padding:21px 18px}.intro-panel p{font-size:11px;line-height:1.7}
+ .intro-instruction{font-size:7px;letter-spacing:.8px}
+ .story-panel{bottom:calc(env(safe-area-inset-bottom) + 115px);padding:13px 15px}.story-panel p{font-size:11px}
+ .riddle-panel{bottom:calc(env(safe-area-inset-bottom) + 112px);padding:12px 10px}.riddle-panel p{font-size:10px}
+ .rune-row{gap:6px}.rune-row button{width:78px;min-height:68px}.rune-row b{font-size:24px}
+}
+.story-hint{display:block;margin-top:8px;font-size:8px;letter-spacing:1.5px;color:#79cce5}
