@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-type Stage = 'intro' | 'explore' | 'fragment' | 'riddle' | 'complete'
+type Stage = 'intro' | 'explore' | 'fragment' | 'riddle' | 'gate' | 'complete'
 type GameState = {
   stage: Stage
   joystick: { x: number; y: number }
@@ -30,20 +30,27 @@ export const useGameStore = create<GameState>((set, get) => ({
   ...initial,
   setJoystick: (x, y) => set({ joystick: { x, y } }),
   requestInteract: () => {
-    const { stage } = get()
-    if (stage === 'fragment') set({ stage: 'riddle', message: 'Three symbols. One memory. Restore the sequence.' })
-    else if (stage === 'complete') set({ message: 'The sealed gate is open. Your journey has only begun.' })
-    else set(s => ({ interactRequested: s.interactRequested + 1 }))
+    const stage = get().stage
+    if (stage === 'fragment') set({ stage: 'riddle', runeChoices: [], message: 'Restore the inscription: Eye, then Sun, then Scarab.' })
+    else if (stage === 'explore' || stage === 'gate') set(s => ({ interactRequested: s.interactRequested + 1 }))
   },
-  collectArtifact: () => set({ artifactFound: true, stage: 'fragment', message: 'The fragment awakens. A voice echoes through the chamber…' }),
+  collectArtifact: () => set({ artifactFound: true, stage: 'fragment', message: 'Memory fragment recovered.' }),
   advanceStory: () => set({ stage: 'explore', message: 'Find the glowing memory fragment on the altar.' }),
   chooseRune: (rune) => {
-    const next = [...get().runeChoices, rune].slice(0, 3)
+    const state = get()
+    if (state.stage !== 'riddle') return
     const answer = ['eye', 'sun', 'scarab']
-    const correct = next.every((v, i) => v === answer[i])
-    if (next.length === 3 && correct) set({ runeChoices: next, stage: 'complete', message: 'THE FIRST SEAL IS BROKEN. THE GATE STIRS.' })
-    else if (next.length === 3) set({ runeChoices: [], message: 'The symbols reject the sequence. Listen to the inscription and try again.' })
-    else set({ runeChoices: next, message: 'The stone remembers… continue.' })
+    const index = state.runeChoices.length
+    if (rune !== answer[index]) {
+      set({ runeChoices: [], message: `The ${rune.toUpperCase()} rune rejects your touch. Sequence reset — begin with the EYE.` })
+      return
+    }
+    const next = [...state.runeChoices, rune]
+    if (next.length === 3) {
+      set({ runeChoices: next, stage: 'gate', message: 'SEQUENCE COMPLETE. The first seal breaks. Reach the awakened gate.' })
+      return
+    }
+    set({ runeChoices: next, message: `${rune.toUpperCase()} confirmed. ${3 - next.length} symbol${next.length === 1 ? 's' : ''} remaining.` })
   },
   resetGame: () => set({ ...initial }),
   setMessage: (message) => set({ message })
