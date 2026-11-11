@@ -7,6 +7,5 @@ export default function App() {
     <World />
     <GameHUD />
     <TouchControls />
-    <div className="chapter"><span>CHAPTER 01</span><strong>THE FIRST AWAKENING</strong></div>
   </main>
 }
