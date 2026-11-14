@@ -1,0 +1,9 @@
+/* Additions for the five-challenge chapter. Loaded from App.tsx. */
+.rune-row{flex-wrap:wrap}
+.rune-row button{width:min(30%,96px)}
+.glyph-show{cursor:default;pointer-events:none}
+.scarab-count{position:absolute;left:50%;top:max(104px,calc(env(safe-area-inset-top) + 80px));transform:translateX(-50%);padding:6px 12px;border:1px solid #c49a5560;background:#090c10c9;color:#f0d19a;font-size:9px;letter-spacing:1.5px;border-radius:3px;pointer-events:none}
+.guardian-panel .primary-action{margin:12px auto 0;display:block}
+.guardian-track{position:relative;height:16px;margin:14px auto 6px;max-width:320px;background:#1a1d24;border:1px solid #b88c4e66;border-radius:8px;overflow:hidden}
+.guardian-zone{position:absolute;top:0;bottom:0;background:#3f8f4fb3}
+.guardian-marker{position:absolute;top:-4px;bottom:-4px;width:4px;margin-left:-2px;background:#ffd27a;border-radius:2px;box-shadow:0 0 8px #ffd27a}
